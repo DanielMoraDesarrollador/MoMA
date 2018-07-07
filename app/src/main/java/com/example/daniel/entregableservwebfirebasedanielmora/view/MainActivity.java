@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.daniel.entregableservwebfirebasedanielmora.R;
@@ -20,6 +21,7 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.Profile;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,6 +31,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -36,54 +39,32 @@ import java.security.NoSuchAlgorithmException;
 public class MainActivity extends AppCompatActivity {
 
 
-    private FragmentObra fragmentObra;
-    private FragmentManager fragmentManager;
     private CallbackManager callbackManager;
     private LoginButton loginButtonFacebook;
+
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+
     private EditText editTextMail;
     private EditText editTextPass;
     private Button botonCrear;
     private Button botonLogin;
+
+    private ImageView fotoPerfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //  printHash();
         mAuth = FirebaseAuth.getInstance();
-
-        fragmentObra = new FragmentObra();
-        fragmentManager = getSupportFragmentManager();
-
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    // User is signed in
-                    Intent intent = new Intent(MainActivity.this, FragmentObra.class);
-                    startActivity(intent);
-                   // Log.d("facebook", "onAuthStateChanged:signed_out");
-
-
-                } else {
-                    // User is signed out
-                //    Log.d("facebook", "onAuthStateChanged:signed_out");
-                }
-                // ...
-            }
-        };
-
-        callbackManager = CallbackManager.Factory.create();
-        loginButtonFacebook = findViewById(R.id.login_button);
-        loginButtonFacebook.setReadPermissions("email","public_profile");
-
+        fotoPerfil = findViewById(R.id.foto_perfil_usuario_id);
         editTextMail = findViewById(R.id.edit_text_email);
         editTextPass = findViewById(R.id.edit_text_pass);
         botonCrear = findViewById(R.id.boton_crear_usuario);
         botonLogin = findViewById(R.id.boton_login_usuario);
+
 
         botonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +79,32 @@ public class MainActivity extends AppCompatActivity {
                 crearUsuario(editTextMail.getText().toString(), editTextPass.getText().toString());
             }
         });
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    //El usuario ha iniciado sesión
+                    Intent intent = new Intent(MainActivity.this, ActivitySecundaria.class);
+                    startActivity(intent);
+                    // Log.d("facebook", "onAuthStateChanged:cerró sesión");
+
+
+                } else {
+                    //El usuario está desconectado
+                    //    Log.d("facebook", "onAuthStateChanged:cerró sesión");
+                }
+                // ...
+            }
+        };
+
+        callbackManager = CallbackManager.Factory.create();
+
+
+        loginButtonFacebook = findViewById(R.id.login_button);
+        loginButtonFacebook.setReadPermissions("email", "public_profile");
+
         loginButtonFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
 
             @Override
@@ -119,7 +126,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        printHash();
+      /*  AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+        if (isLoggedIn) {
+            //LO LLEVO AL HOME ACTIVITY A DONDE SEA, PORQUE YA ESTA LOGUEADO
+            Intent intent = new Intent(MainActivity.this, ActivitySecundaria.class);
+            startActivity(intent);
+            cargarFotoDelUsuario();
+
+            return;
+        }
+*/
+    }
+
+    private void cargarFotoDelUsuario() {
+        if (Profile.getCurrentProfile() != null) {
+            Uri photoUri = Profile.getCurrentProfile().getProfilePictureUri(200, 200);
+            Picasso.with(getApplicationContext()).load(photoUri).into(fotoPerfil);
+        }
     }
 
     private void handleFacebookAccessToken(AccessToken token) {
@@ -129,12 +153,10 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
+                            //Inicie sesión con éxito, actualice la IU con la información del usuario que inició sesión.
                             FirebaseUser user = mAuth.getCurrentUser();
-
-
                         } else {
-                            // If sign in fails, display a message to the user.
+                            //Si el inicio de sesión falla, muestre un mensaje al usuario.
                             Toast.makeText(MainActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
@@ -161,15 +183,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-
-    @Override
     public void onStart() {
         super.onStart();
-
         //Compruebe si el usuario ha iniciado sesión (no nulo) y actualizar UI en consecuencia.
         mAuth.addAuthStateListener(mAuthListener);
     }
@@ -182,18 +197,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        // Pase el resultado de la actividad al SDK de Facebook
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
     private void crearUsuario(String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
+                            //Inicie sesión con éxito, actualice la IU con la información del usuario que inició sesión.
                             Log.d("firebase", "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
 
                         } else {
-                            // If sign in fails, display a message to the user.
+                            //Si el inicio de sesión falla, muestre un mensaje al usuario
                             Log.w("firebase", "createUserWithEmail:failure", task.getException());
                             Toast.makeText(MainActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
@@ -209,11 +231,12 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
+                            //Inicie sesión con éxito, actualice la IU con la información del usuario que inició sesión.
+                            Intent intent = new Intent(MainActivity.this, ActivitySecundaria.class);
+                            startActivity(intent);
                             FirebaseUser user = mAuth.getCurrentUser();
-
                         } else {
-                            // If sign in fails, display a message to the user.
+                            //Si el inicio de sesión falla, muestre un mensaje al usuario.
                             Toast.makeText(MainActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
@@ -221,5 +244,4 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-
 }

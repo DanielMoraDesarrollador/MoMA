@@ -6,15 +6,21 @@
     android:layout_height="match_parent"
     android:background="@drawable/momaback"
     android:orientation="vertical"
-    android:id="@+id/contenedor_main_activity"
     tools:context=".view.MainActivity">
+
+
+    <ImageView
+        android:id="@+id/foto_perfil_usuario_id"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="right"
+        android:layout_margin="40dp" />
 
     <EditText
         android:id="@+id/edit_text_email"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:layout_marginTop="30dp"
         android:layout_marginRight="12dp"
         android:hint="e-mail" />
 
@@ -24,7 +30,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:layout_marginRight="12dp"
-        android:hint="password" />
+        android:hint="password"
+        android:inputType="textPassword"
+        />
 
     <Button
         android:id="@+id/boton_crear_usuario"
@@ -47,7 +55,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
-        android:layout_margin="30dp" />
-
+        android:layout_margin="50dp" />
 
 </LinearLayout>
