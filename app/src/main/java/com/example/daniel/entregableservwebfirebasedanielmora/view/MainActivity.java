@@ -225,6 +225,7 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+    
     private void loginUsuario(String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
