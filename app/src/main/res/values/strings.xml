@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">EntregableServWebFirebaseDanielMora</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="facebook_app_id">927341034118893</string>
+    <string name="fb_login_protocol_scheme">fb927341034118893</string>
+
+</resources>
