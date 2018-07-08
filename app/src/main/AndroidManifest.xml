@@ -42,11 +42,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.ActivitySecundaria"
-            android:screenOrientation="portrait" />
+            android:name=".view.ActivitySecundaria"/>
         <activity
             android:name=".view.ActivityDetalle"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait">
+
+        </activity>
     </application>
 
 </manifest>

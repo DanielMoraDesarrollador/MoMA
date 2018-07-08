@@ -40,11 +40,16 @@ public class FragmentDetalleObra extends Fragment {
         nacionalidad = view.findViewById(R.id.nacionalidad);
         influenciadoPor = view.findViewById(R.id.influenciado_por);
 
+        nombreObra.setSelected(true);
+        nombreArtista.setSelected(true);
+        nacionalidad.setSelected(true);
+        influenciadoPor.setSelected(true);
+
         Bundle bundle = getArguments();
         obraDeArte = (ObraDeArte) bundle.getSerializable(OBRA_RECIBIDA);
 
         nombreObra.setText(obraDeArte.getNombreObra());
-      //  Picasso.with(getContext()).load(obraDeArte.getImage()).into(imagenGrande);
+       // Picasso.with(getContext()).load(obraDeArte.getImage()).placeholder(R.drawable.placeholder).into(imagenGrande);
 
 
         return view;

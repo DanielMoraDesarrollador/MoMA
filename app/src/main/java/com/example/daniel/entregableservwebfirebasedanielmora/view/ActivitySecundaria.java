@@ -51,7 +51,7 @@ public class ActivitySecundaria extends AppCompatActivity implements AdapterObra
         });
 
 
-        adapterObraDeArte = new AdapterObraDeArte(getApplicationContext());
+        adapterObraDeArte = new AdapterObraDeArte(getApplicationContext(),this);
         linearLayoutManagerObra = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         recyclerViewObra = findViewById(R.id.recycler_id);
 

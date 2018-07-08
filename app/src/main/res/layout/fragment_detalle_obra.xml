@@ -24,10 +24,11 @@
 
         <TextView
             android:id="@+id/nombre_obra"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|right"
+            android:layout_gravity="right"
             android:layout_margin="6dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/shadow_gris"
             android:ellipsize="marquee"
             android:focusable="false"
@@ -43,9 +44,9 @@
 
         <TextView
             android:id="@+id/nombre_artista"
-            android:layout_width="160dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|right"
+            android:layout_gravity="right"
             android:layout_margin="6dp"
             android:background="@drawable/shadow_gris"
             android:ellipsize="marquee"
@@ -62,9 +63,9 @@
 
         <TextView
             android:id="@+id/nacionalidad"
-            android:layout_width="170dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|right"
+            android:layout_gravity="right"
             android:layout_margin="6dp"
             android:background="@drawable/shadow_gris"
             android:ellipsize="marquee"
@@ -81,9 +82,9 @@
 
         <TextView
             android:id="@+id/influenciado_por"
-            android:layout_width="180dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|right"
+            android:layout_gravity="right"
             android:layout_margin="6dp"
             android:background="@drawable/shadow_gris"
             android:ellipsize="marquee"

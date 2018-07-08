@@ -23,9 +23,10 @@ public class AdapterObraDeArte extends RecyclerView.Adapter {
     private Context context;
     private NotificadorCelda notificadorCelda;
 
-    public AdapterObraDeArte(Context context) {
+    public AdapterObraDeArte(Context context,NotificadorCelda notificadorCelda) {
         this.context = context;
         this.obras = new ArrayList<>();
+        this.notificadorCelda=notificadorCelda;
     }
 
     public void setObras(List<ObraDeArte> obras) {
