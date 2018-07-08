@@ -31,15 +31,22 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.MainActivity">
+        <activity
+            android:name=".view.MainActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.ActivitySecundaria" />
-        <activity android:name=".view.ActivityDetalle"></activity>
+        <activity
+            android:name=".view.ActivitySecundaria"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ActivityDetalle"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
