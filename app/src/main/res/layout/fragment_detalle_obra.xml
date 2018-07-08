@@ -38,7 +38,7 @@
             android:singleLine="true"
             android:text="nombre_obra"
             android:textColor="@color/colorAccent"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <TextView

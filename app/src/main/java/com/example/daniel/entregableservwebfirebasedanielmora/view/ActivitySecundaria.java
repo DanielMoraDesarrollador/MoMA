@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.io.Serializable;
 import java.util.List;
 
-public class ActivitySecundaria extends AppCompatActivity {
+public class ActivitySecundaria extends AppCompatActivity implements AdapterObraDeArte.NotificadorCelda {
 
     private AdapterObraDeArte adapterObraDeArte;
     private LinearLayoutManager linearLayoutManagerObra;
@@ -75,7 +75,8 @@ public class ActivitySecundaria extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    public void notificarCeldaClickeada(List<ObraDeArte> obrasDeArte, int posicion) {
+    @Override
+    public void notificarCeldaCliqueada(List<ObraDeArte> obrasDeArte, int posicion) {
         Intent intent = new Intent(ActivitySecundaria.this, ActivityDetalle.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable(ActivityDetalle.OBRA_KEY, (Serializable) obrasDeArte);

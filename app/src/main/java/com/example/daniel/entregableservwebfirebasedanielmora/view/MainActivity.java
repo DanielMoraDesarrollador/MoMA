@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+
+
 import com.example.daniel.entregableservwebfirebasedanielmora.R;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -109,26 +111,25 @@ public class MainActivity extends AppCompatActivity {
         loginButtonFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Log.d("firebase", "facebook:onSuccess:" + loginResult);
-                Toast.makeText(MainActivity.this, "On Success", Toast.LENGTH_SHORT).show();
                 handleFacebookAccessToken(loginResult.getAccessToken());
             }
 
             @Override
             public void onCancel() {
-                // App code
-                Log.d("firebase", "facebook:onCancel");
                 Toast.makeText(MainActivity.this, "On Cancel", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onError(FacebookException error) {
-                // App code
-                Log.d("firebase", "facebook:onError", error);
                 Toast.makeText(MainActivity.this, "On Error", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
+
+    AccessToken accessToken = AccessToken.getCurrentAccessToken();
+    boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+
 
     private void cargarFotoDelUsuario() {
         if (Profile.getCurrentProfile() != null) {

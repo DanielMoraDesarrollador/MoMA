@@ -21,6 +21,7 @@ public class AdapterObraDeArte extends RecyclerView.Adapter {
 
     private List<ObraDeArte> obras;
     private Context context;
+    private NotificadorCelda notificadorCelda;
 
     public AdapterObraDeArte(Context context) {
         this.context = context;
@@ -68,19 +69,30 @@ public class AdapterObraDeArte extends RecyclerView.Adapter {
 
     public class ViewHolderObra extends RecyclerView.ViewHolder {
 
-     //   private ImageView imagenCelda;
+        //   private ImageView imagenCelda;
         private TextView textViewTitulo;
 
         public ViewHolderObra(final View itemView) {
             super(itemView);
             textViewTitulo = itemView.findViewById(R.id.titulo_celda_recycler_obra);
-     //       imagenCelda = itemView.findViewById(R.id.imagen_celda_recycler_obra);
+            //       imagenCelda = itemView.findViewById(R.id.imagen_celda_recycler_obra);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int celdaClickeada = getAdapterPosition();
+                    notificadorCelda.notificarCeldaCliqueada(obras, celdaClickeada);
+                }
+            });
         }
 
         public void armarCeldaObras(ObraDeArte obraDeArte) {
             textViewTitulo.setText(obraDeArte.getNombreObra());
-     //       Picasso.with(context).load(obraDeArte.getImagenUrl()).placeholder(R.drawable.placeholder).into(imagenCelda);
+            //       Picasso.with(context).load(obraDeArte.getImagenUrl()).placeholder(R.drawable.placeholder).into(imagenCelda);
         }
+    }
+
+    public interface NotificadorCelda {
+        public void notificarCeldaCliqueada(List<ObraDeArte> obrasDeArte, int posicion);
     }
 
 }
