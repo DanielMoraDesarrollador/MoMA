@@ -5,9 +5,9 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -104,39 +104,30 @@ public class MainActivity extends AppCompatActivity {
 
         loginButtonFacebook = findViewById(R.id.login_button);
         loginButtonFacebook.setReadPermissions("email", "public_profile");
+        cargarFotoDelUsuario();
 
         loginButtonFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-
             @Override
             public void onSuccess(LoginResult loginResult) {
-                handleFacebookAccessToken(loginResult.getAccessToken());
+                Log.d("firebase", "facebook:onSuccess:" + loginResult);
                 Toast.makeText(MainActivity.this, "On Success", Toast.LENGTH_SHORT).show();
+                handleFacebookAccessToken(loginResult.getAccessToken());
             }
 
             @Override
             public void onCancel() {
                 // App code
+                Log.d("firebase", "facebook:onCancel");
                 Toast.makeText(MainActivity.this, "On Cancel", Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onError(FacebookException exception) {
+            public void onError(FacebookException error) {
                 // App code
+                Log.d("firebase", "facebook:onError", error);
                 Toast.makeText(MainActivity.this, "On Error", Toast.LENGTH_SHORT).show();
             }
         });
-
-      /*  AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
-        if (isLoggedIn) {
-            //LO LLEVO AL HOME ACTIVITY A DONDE SEA, PORQUE YA ESTA LOGUEADO
-            Intent intent = new Intent(MainActivity.this, ActivitySecundaria.class);
-            startActivity(intent);
-            cargarFotoDelUsuario();
-
-            return;
-        }
-*/
     }
 
     private void cargarFotoDelUsuario() {
@@ -155,10 +146,12 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             //Inicie sesión con éxito, actualice la IU con la información del usuario que inició sesión.
                             FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
                         } else {
                             //Si el inicio de sesión falla, muestre un mensaje al usuario.
                             Toast.makeText(MainActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
+                            updateUI(null);
                         }
                         // ...
                     }
@@ -187,6 +180,8 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         //Compruebe si el usuario ha iniciado sesión (no nulo) y actualizar UI en consecuencia.
         mAuth.addAuthStateListener(mAuthListener);
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
     }
 
     @Override
@@ -213,19 +208,22 @@ public class MainActivity extends AppCompatActivity {
                             //Inicie sesión con éxito, actualice la IU con la información del usuario que inició sesión.
                             Log.d("firebase", "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-
+                            updateUI(user);
                         } else {
                             //Si el inicio de sesión falla, muestre un mensaje al usuario
                             Log.w("firebase", "createUserWithEmail:failure", task.getException());
                             Toast.makeText(MainActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
+                            updateUI(null);
                         }
                         // ...
                     }
                 });
     }
 
-    
+    private void updateUI(FirebaseUser user) {
+    }
+
     private void loginUsuario(String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -233,13 +231,13 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             //Inicie sesión con éxito, actualice la IU con la información del usuario que inició sesión.
-                            Intent intent = new Intent(MainActivity.this, ActivitySecundaria.class);
-                            startActivity(intent);
                             FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
                         } else {
                             //Si el inicio de sesión falla, muestre un mensaje al usuario.
                             Toast.makeText(MainActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
+                            updateUI(null);
                         }
                         // ...
                     }

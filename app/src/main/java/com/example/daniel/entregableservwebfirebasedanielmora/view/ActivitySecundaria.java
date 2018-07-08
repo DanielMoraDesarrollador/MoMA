@@ -1,6 +1,7 @@
 package com.example.daniel.entregableservwebfirebasedanielmora.view;
 
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,12 +26,13 @@ public class ActivitySecundaria extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManagerObra;
     private RecyclerView recyclerViewObra;
     private ControllerObra controllerObra;
-   private Button cerrarSesionButton;
+    private Button cerrarSesionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.secundaria_activity);
+
         cerrarSesionButton = findViewById(R.id.cerrar_sesion_button_id);
         cerrarSesionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +42,7 @@ public class ActivitySecundaria extends AppCompatActivity {
                         //si es que esta logueado con facebook, tengo que desloguearlo
                         LoginManager.getInstance().logOut();
                     }
-                    //esto es para desloguearlo de firebase, ya se que entro con facebok o nativo
+                    //esto es para desloguearlo de firebase, ya se que entro con facebook o nativo
                     FirebaseAuth.getInstance().signOut();
                     onBackPressed();
                 }
