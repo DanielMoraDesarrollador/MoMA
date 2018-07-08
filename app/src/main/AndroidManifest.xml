@@ -38,7 +38,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.ActivitySecundaria"></activity>
+        <activity android:name=".view.ActivitySecundaria" />
+        <activity android:name=".view.ActivityDetalle"></activity>
     </application>
 
 </manifest>

@@ -13,29 +13,12 @@ public class ObraDeArte implements Serializable {
 
     private String artistId;
 
-
-
     public ObraDeArte() {
     }
 
     public String getNombreObra() {
         return nombreObra;
     }
-
-
-
-
-    @Override
-    public String toString() {
-        return "ObraDeArte{" +
-                "nombreObra='" + nombreObra +
-                '}';
-    }
-
-    public void setNombreObra(String nombreObra) {
-        this.nombreObra = nombreObra;
-    }
-
 
     public String getImage() {
         return image;
@@ -45,11 +28,20 @@ public class ObraDeArte implements Serializable {
         this.image = image;
     }
 
-    public String getArtistId() {
-        return artistId;
+
+    @Override
+    public String toString() {
+        return "ObraDeArte{" +
+                "nombreObra='" + nombreObra +
+                '}';
     }
 
-    public void setArtistId(String artistId) {
-        this.artistId = artistId;
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof ObraDeArte)) {
+            return false;
+        }
+        ObraDeArte obraDeArteAComparar = (ObraDeArte) obj;
+        return obraDeArteAComparar.getNombreObra().equals(this.nombreObra);
     }
 }

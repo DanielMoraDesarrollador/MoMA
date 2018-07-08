@@ -18,6 +18,7 @@ import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class ActivitySecundaria extends AppCompatActivity {
@@ -72,5 +73,14 @@ public class ActivitySecundaria extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
+    }
+
+    public void notificarCeldaClickeada(List<ObraDeArte> obrasDeArte, int posicion) {
+        Intent intent = new Intent(ActivitySecundaria.this, ActivityDetalle.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(ActivityDetalle.OBRA_KEY, (Serializable) obrasDeArte);
+        bundle.putInt(ActivityDetalle.POSICION_KEY, posicion);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 }
