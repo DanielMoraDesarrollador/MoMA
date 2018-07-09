@@ -50,7 +50,6 @@ public class ActivityMain extends AppCompatActivity implements AdapterObraDeArte
             }
         });
 
-
         adapterObraDeArte = new AdapterObraDeArte(getApplicationContext(),this);
         linearLayoutManagerObra = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         recyclerViewObra = findViewById(R.id.recycler_id);

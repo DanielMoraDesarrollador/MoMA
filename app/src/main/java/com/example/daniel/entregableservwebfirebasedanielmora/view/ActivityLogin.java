@@ -16,8 +16,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-
-
 import com.example.daniel.entregableservwebfirebasedanielmora.R;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -40,7 +38,6 @@ import java.security.NoSuchAlgorithmException;
 
 public class ActivityLogin extends AppCompatActivity {
 
-
     private CallbackManager callbackManager;
     private LoginButton loginButtonFacebook;
 
@@ -61,6 +58,7 @@ public class ActivityLogin extends AppCompatActivity {
 
         //  printHash();
         mAuth = FirebaseAuth.getInstance();
+
         fotoPerfil = findViewById(R.id.foto_perfil_usuario_id);
         editTextMail = findViewById(R.id.edit_text_email);
         editTextPass = findViewById(R.id.edit_text_pass);
@@ -101,35 +99,34 @@ public class ActivityLogin extends AppCompatActivity {
             }
         };
 
-        callbackManager = CallbackManager.Factory.create();
-
-
-        loginButtonFacebook = findViewById(R.id.login_button);
-        loginButtonFacebook.setReadPermissions("email", "public_profile");
         cargarFotoDelUsuario();
 
+        callbackManager = CallbackManager.Factory.create();
+        loginButtonFacebook = findViewById(R.id.login_button);
+        loginButtonFacebook.setReadPermissions("email", "public_profile");
         loginButtonFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+                Log.d("facebook", "facebook:onSuccess:" + loginResult);
                 handleFacebookAccessToken(loginResult.getAccessToken());
             }
 
             @Override
             public void onCancel() {
-                Toast.makeText(ActivityLogin.this, "On Cancel", Toast.LENGTH_SHORT).show();
+                Log.d("facebook", "facebook:onCancel");
+                // ...
             }
 
             @Override
             public void onError(FacebookException error) {
-                Toast.makeText(ActivityLogin.this, "On Error", Toast.LENGTH_SHORT).show();
+                Log.d("facebook", "facebook:onError", error);
+                // ...
             }
         });
     }
 
-
     AccessToken accessToken = AccessToken.getCurrentAccessToken();
     boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
-
 
     private void cargarFotoDelUsuario() {
         if (Profile.getCurrentProfile() != null) {
@@ -139,21 +136,26 @@ public class ActivityLogin extends AppCompatActivity {
     }
 
     private void handleFacebookAccessToken(AccessToken token) {
+        Log.d("facebook", "handleFacebookAccessToken:" + token);
+
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            //Inicie sesión con éxito, actualice la IU con la información del usuario que inició sesión.
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("facebook", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                         } else {
-                            //Si el inicio de sesión falla, muestre un mensaje al usuario.
+                            // If sign in fails, display a message to the user.
+                            Log.w("facebook", "signInWithCredential:failure", task.getException());
                             Toast.makeText(ActivityLogin.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
+
                         // ...
                     }
                 });
