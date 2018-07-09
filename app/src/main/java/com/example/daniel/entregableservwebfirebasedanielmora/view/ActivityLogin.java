@@ -40,6 +40,7 @@ public class ActivityLogin extends AppCompatActivity {
 
     private CallbackManager callbackManager;
     private LoginButton loginButtonFacebook;
+    private static final String TAG = ActivityLogin.class.getSimpleName();
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -48,7 +49,6 @@ public class ActivityLogin extends AppCompatActivity {
     private EditText editTextPass;
     private Button botonCrear;
     private Button botonLogin;
-
     private ImageView fotoPerfil;
 
     @Override
@@ -88,12 +88,12 @@ public class ActivityLogin extends AppCompatActivity {
                     //El usuario ha iniciado sesión
                     Intent intent = new Intent(ActivityLogin.this, ActivityMain.class);
                     startActivity(intent);
-                    // Log.d("facebook", "onAuthStateChanged:cerró sesión");
+                    // Log.d(TAG, "onAuthStateChanged:cerró sesión");
 
 
                 } else {
                     //El usuario está desconectado
-                    //    Log.d("facebook", "onAuthStateChanged:cerró sesión");
+                    //    Log.d(TAG, "onAuthStateChanged:cerró sesión");
                 }
                 // ...
             }
@@ -107,19 +107,19 @@ public class ActivityLogin extends AppCompatActivity {
         loginButtonFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Log.d("facebook", "facebook:onSuccess:" + loginResult);
+                Log.d(TAG, "facebook:onSuccess:" + loginResult);
                 handleFacebookAccessToken(loginResult.getAccessToken());
             }
 
             @Override
             public void onCancel() {
-                Log.d("facebook", "facebook:onCancel");
+                Log.d(TAG, "facebook:onCancel");
                 // ...
             }
 
             @Override
             public void onError(FacebookException error) {
-                Log.d("facebook", "facebook:onError", error);
+                Log.d(TAG, "facebook:onError", error);
                 // ...
             }
         });
@@ -136,7 +136,7 @@ public class ActivityLogin extends AppCompatActivity {
     }
 
     private void handleFacebookAccessToken(AccessToken token) {
-        Log.d("facebook", "handleFacebookAccessToken:" + token);
+        Log.d(TAG, "handleFacebookAccessToken:" + token);
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mAuth.signInWithCredential(credential)
@@ -145,12 +145,12 @@ public class ActivityLogin extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d("facebook", "signInWithCredential:success");
+                            Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w("facebook", "signInWithCredential:failure", task.getException());
+                            Log.w(TAG, "signInWithCredential:failure", task.getException());
                             Toast.makeText(ActivityLogin.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
@@ -209,12 +209,12 @@ public class ActivityLogin extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             //Inicie sesión con éxito, actualice la IU con la información del usuario que inició sesión.
-                            Log.d("firebase", "createUserWithEmail:success");
+                            Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                         } else {
                             //Si el inicio de sesión falla, muestre un mensaje al usuario
-                            Log.w("firebase", "createUserWithEmail:failure", task.getException());
+                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
                             Toast.makeText(ActivityLogin.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
@@ -225,6 +225,10 @@ public class ActivityLogin extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser user) {
+        if (user!=null){
+            Intent intent = new Intent(ActivityLogin.this, ActivityMain.class);
+            startActivity(intent);
+        }
     }
 
     private void loginUsuario(String email, String password) {
