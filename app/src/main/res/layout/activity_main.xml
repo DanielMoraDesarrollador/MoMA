@@ -4,57 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/momaback"
     android:orientation="vertical"
-    tools:context=".view.MainActivity">
+    android:background="@drawable/backg1"
+    tools:context=".view.ActivityMain">
 
 
     <ImageView
-        android:id="@+id/foto_perfil_usuario_id"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="right"
-        android:layout_margin="40dp" />
-
-    <EditText
-        android:id="@+id/edit_text_email"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginRight="12dp"
-        android:hint="e-mail" />
+        android:layout_gravity="top"
+        android:layout_margin="12dp"
+        android:src="@drawable/logo1" />
 
-    <EditText
-        android:id="@+id/edit_text_pass"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginRight="12dp"
-        android:hint="password"
-        android:inputType="textPassword"
-        />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_id"
+        android:layout_width="match_parent"
+        android:layout_height="370dp"
+        android:layout_margin="12dp" />
+
 
     <Button
-        android:id="@+id/boton_crear_usuario"
-        android:layout_width="250dp"
+        android:text="CERRAR SESION"
+        android:id="@+id/cerrar_sesion_button_id"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginRight="12dp"
-        android:text="Crear Cuenta" />
-
-    <Button
-        android:id="@+id/boton_login_usuario"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginRight="12dp"
-        android:text="Login" />
-
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="50dp" />
+        android:layout_margin="12dp"
+        android:layout_gravity="bottom"/>
 
 </LinearLayout>

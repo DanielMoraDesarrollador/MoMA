@@ -38,7 +38,7 @@ import com.squareup.picasso.Picasso;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class MainActivity extends AppCompatActivity {
+public class ActivityLogin extends AppCompatActivity {
 
 
     private CallbackManager callbackManager;
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         //  printHash();
         mAuth = FirebaseAuth.getInstance();
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     //El usuario ha iniciado sesión
-                    Intent intent = new Intent(MainActivity.this, ActivitySecundaria.class);
+                    Intent intent = new Intent(ActivityLogin.this, ActivityMain.class);
                     startActivity(intent);
                     // Log.d("facebook", "onAuthStateChanged:cerró sesión");
 
@@ -116,12 +116,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onCancel() {
-                Toast.makeText(MainActivity.this, "On Cancel", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ActivityLogin.this, "On Cancel", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onError(FacebookException error) {
-                Toast.makeText(MainActivity.this, "On Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ActivityLogin.this, "On Error", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                             updateUI(user);
                         } else {
                             //Si el inicio de sesión falla, muestre un mensaje al usuario.
-                            Toast.makeText(MainActivity.this, "Authentication failed.",
+                            Toast.makeText(ActivityLogin.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
@@ -213,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             //Si el inicio de sesión falla, muestre un mensaje al usuario
                             Log.w("firebase", "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Authentication failed.",
+                            Toast.makeText(ActivityLogin.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
@@ -236,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
                             updateUI(user);
                         } else {
                             //Si el inicio de sesión falla, muestre un mensaje al usuario.
-                            Toast.makeText(MainActivity.this, "Authentication failed.",
+                            Toast.makeText(ActivityLogin.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
