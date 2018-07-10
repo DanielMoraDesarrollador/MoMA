@@ -15,7 +15,6 @@ import java.util.List;
 
 public class ActivityDetalle extends AppCompatActivity {
 
-
     public static final String OBRA_KEY = "lista_obras";
     public static final String POSICION_KEY = "posicion_key";
     private List<FragmentDetalleObra> listaDeFragments;

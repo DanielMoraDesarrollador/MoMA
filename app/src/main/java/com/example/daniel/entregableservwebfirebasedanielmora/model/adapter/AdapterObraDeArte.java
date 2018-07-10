@@ -23,10 +23,10 @@ public class AdapterObraDeArte extends RecyclerView.Adapter {
     private Context context;
     private NotificadorCelda notificadorCelda;
 
-    public AdapterObraDeArte(Context context,NotificadorCelda notificadorCelda) {
+    public AdapterObraDeArte(Context context, NotificadorCelda notificadorCelda) {
         this.context = context;
         this.obras = new ArrayList<>();
-        this.notificadorCelda=notificadorCelda;
+        this.notificadorCelda = notificadorCelda;
     }
 
     public void setObras(List<ObraDeArte> obras) {
@@ -70,13 +70,13 @@ public class AdapterObraDeArte extends RecyclerView.Adapter {
 
     public class ViewHolderObra extends RecyclerView.ViewHolder {
 
-        //   private ImageView imagenCelda;
+        private ImageView imagenCelda;
         private TextView textViewTitulo;
 
         public ViewHolderObra(final View itemView) {
             super(itemView);
             textViewTitulo = itemView.findViewById(R.id.titulo_celda_recycler_obra);
-            //       imagenCelda = itemView.findViewById(R.id.imagen_celda_recycler_obra);
+            imagenCelda = itemView.findViewById(R.id.imagen_celda_recycler_obra);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -88,7 +88,7 @@ public class AdapterObraDeArte extends RecyclerView.Adapter {
 
         public void armarCeldaObras(ObraDeArte obraDeArte) {
             textViewTitulo.setText(obraDeArte.getNombreObra());
-            //       Picasso.with(context).load(obraDeArte.getImagenUrl()).placeholder(R.drawable.placeholder).into(imagenCelda);
+            Picasso.get().load(obraDeArte.getImage()).placeholder(R.drawable.placeholder).into(imagenCelda);
         }
     }
 

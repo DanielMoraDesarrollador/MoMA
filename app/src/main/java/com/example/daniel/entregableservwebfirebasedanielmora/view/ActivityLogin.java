@@ -65,7 +65,6 @@ public class ActivityLogin extends AppCompatActivity {
         botonCrear = findViewById(R.id.boton_crear_usuario);
         botonLogin = findViewById(R.id.boton_login_usuario);
 
-
         botonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,12 +87,12 @@ public class ActivityLogin extends AppCompatActivity {
                     //El usuario ha iniciado sesión
                     Intent intent = new Intent(ActivityLogin.this, ActivityMain.class);
                     startActivity(intent);
-                    // Log.d(TAG, "onAuthStateChanged:cerró sesión");
+                    Log.d("facebook", "onAuthStateChanged:signed_out");
 
 
                 } else {
                     //El usuario está desconectado
-                    //    Log.d(TAG, "onAuthStateChanged:cerró sesión");
+                    Log.d("facebook", "onAuthStateChanged:signed_out");
                 }
                 // ...
             }
@@ -131,7 +130,7 @@ public class ActivityLogin extends AppCompatActivity {
     private void cargarFotoDelUsuario() {
         if (Profile.getCurrentProfile() != null) {
             Uri photoUri = Profile.getCurrentProfile().getProfilePictureUri(200, 200);
-            Picasso.with(getApplicationContext()).load(photoUri).into(fotoPerfil);
+            Picasso.get().load(photoUri).into(fotoPerfil);
         }
     }
 
@@ -139,6 +138,7 @@ public class ActivityLogin extends AppCompatActivity {
         Log.d(TAG, "handleFacebookAccessToken:" + token);
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -225,7 +225,7 @@ public class ActivityLogin extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser user) {
-        if (user!=null){
+        if (user != null) {
             Intent intent = new Intent(ActivityLogin.this, ActivityMain.class);
             startActivity(intent);
         }

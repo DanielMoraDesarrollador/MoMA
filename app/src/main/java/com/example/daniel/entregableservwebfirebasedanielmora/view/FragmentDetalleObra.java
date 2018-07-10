@@ -18,7 +18,6 @@ import com.squareup.picasso.Picasso;
  */
 public class FragmentDetalleObra extends Fragment {
 
-
     private static final String OBRA_RECIBIDA = "obra_recibida";
 
     private ImageView imagenGrande;
@@ -49,8 +48,7 @@ public class FragmentDetalleObra extends Fragment {
         obraDeArte = (ObraDeArte) bundle.getSerializable(OBRA_RECIBIDA);
 
         nombreObra.setText(obraDeArte.getNombreObra());
-       // Picasso.with(getContext()).load(obraDeArte.getImage()).placeholder(R.drawable.placeholder).into(imagenGrande);
-
+        Picasso.get().load(obraDeArte.getImage()).placeholder(R.drawable.placeholder).into(imagenGrande);
 
         return view;
     }
