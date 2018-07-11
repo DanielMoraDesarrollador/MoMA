@@ -4,14 +4,19 @@ package com.example.daniel.entregableservwebfirebasedanielmora.model.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.daniel.entregableservwebfirebasedanielmora.R;
 import com.example.daniel.entregableservwebfirebasedanielmora.model.pojo.ObraDeArte;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -72,11 +77,15 @@ public class AdapterObraDeArte extends RecyclerView.Adapter {
 
         private ImageView imagenCelda;
         private TextView textViewTitulo;
+        private FirebaseStorage storage;
+        private StorageReference reference;
 
         public ViewHolderObra(final View itemView) {
             super(itemView);
             textViewTitulo = itemView.findViewById(R.id.titulo_celda_recycler_obra);
             imagenCelda = itemView.findViewById(R.id.imagen_celda_recycler_obra);
+            storage = FirebaseStorage.getInstance();
+            reference = storage.getReference();
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -88,12 +97,22 @@ public class AdapterObraDeArte extends RecyclerView.Adapter {
 
         public void armarCeldaObras(ObraDeArte obraDeArte) {
             textViewTitulo.setText(obraDeArte.getNombreObra());
-            Picasso.get().load(obraDeArte.getImage()).placeholder(R.drawable.placeholder).into(imagenCelda);
+            //Picasso.get().load(obraDeArte.getImage()).placeholder(R.drawable.placeholder).into(imagenCelda);
+            if (TextUtils.isEmpty(obraDeArte.getImage())) {
+                return;
+            }
+            cargarImagenesDescargadas(obraDeArte.getImage());
+        }
+
+        private void cargarImagenesDescargadas(String imagenDescargada) {
+            Glide.with(context)
+                    .using(new FirebaseImageLoader())
+                    .load(reference.child(imagenDescargada))
+                    .into(imagenCelda);
         }
     }
 
     public interface NotificadorCelda {
         public void notificarCeldaCliqueada(List<ObraDeArte> obrasDeArte, int posicion);
     }
-
 }

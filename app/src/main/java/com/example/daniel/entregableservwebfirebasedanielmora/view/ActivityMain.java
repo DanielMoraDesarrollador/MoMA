@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.daniel.entregableservwebfirebasedanielmora.R;
 import com.example.daniel.entregableservwebfirebasedanielmora.controller.ControllerObra;
@@ -43,14 +44,15 @@ public class ActivityMain extends AppCompatActivity implements AdapterObraDeArte
                         //si es que esta logueado con facebook, tengo que desloguearlo
                         LoginManager.getInstance().logOut();
                     }
-                    //esto es para desloguearlo de firebase, ya se que entro con facebook o nativo
+                    //esto es para desloguearlo de firebase, ya sea que entro con facebook o nativo
                     FirebaseAuth.getInstance().signOut();
+                    Toast.makeText(ActivityMain.this, "¡Cerró Sesión Correctamente!", Toast.LENGTH_SHORT).show();
                     onBackPressed();
                 }
             }
         });
 
-        adapterObraDeArte = new AdapterObraDeArte(getApplicationContext(),this);
+        adapterObraDeArte = new AdapterObraDeArte(getApplicationContext(), this);
         linearLayoutManagerObra = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         recyclerViewObra = findViewById(R.id.recycler_id);
 

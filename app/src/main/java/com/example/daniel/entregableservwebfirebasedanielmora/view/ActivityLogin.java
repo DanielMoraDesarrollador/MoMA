@@ -68,14 +68,28 @@ public class ActivityLogin extends AppCompatActivity {
         botonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginUsuario(editTextMail.getText().toString(), editTextPass.getText().toString());
+                if (editTextMail.getText().toString().isEmpty()) {
+                    Toast.makeText(ActivityLogin.this, "Completar el campo E-MAIL", Toast.LENGTH_SHORT).show();
+                }
+                if (editTextPass.getText().toString().isEmpty()) {
+                    Toast.makeText(ActivityLogin.this, "Completar el campo PASSWORD", Toast.LENGTH_SHORT).show();
+                } else {
+                    loginUsuario(editTextMail.getText().toString(), editTextPass.getText().toString());
+                }
             }
         });
 
         botonCrear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                crearUsuario(editTextMail.getText().toString(), editTextPass.getText().toString());
+                if (editTextMail.getText().toString().isEmpty()) {
+                    Toast.makeText(ActivityLogin.this, "Completar el campo E-MAIL", Toast.LENGTH_SHORT).show();
+                }
+                if (editTextPass.getText().toString().isEmpty()) {
+                    Toast.makeText(ActivityLogin.this, "Completar el campo PASSWORD", Toast.LENGTH_SHORT).show();
+                } else {
+                    crearUsuario(editTextMail.getText().toString(), editTextPass.getText().toString());
+                }
             }
         });
 
