@@ -7,7 +7,9 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp">
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="12dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -25,14 +27,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/imagen_celda_recycler_obra"
-                android:background="@color/cardview_dark_background"
-                android:lines="2"
                 android:layout_margin="3dp"
-                android:textColor="@android:color/white"
-                android:textAlignment="center"
+                android:background="@drawable/shadow_gris"
                 android:letterSpacing="0.125"
+                android:lines="2"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold|italic" />
 
 
         </RelativeLayout>

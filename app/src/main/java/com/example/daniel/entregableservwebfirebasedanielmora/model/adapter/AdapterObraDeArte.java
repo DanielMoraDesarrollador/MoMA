@@ -97,7 +97,6 @@ public class AdapterObraDeArte extends RecyclerView.Adapter {
 
         public void armarCeldaObras(ObraDeArte obraDeArte) {
             textViewTitulo.setText(obraDeArte.getNombreObra());
-            //Picasso.get().load(obraDeArte.getImage()).placeholder(R.drawable.placeholder).into(imagenCelda);
             if (TextUtils.isEmpty(obraDeArte.getImage())) {
                 return;
             }
@@ -108,6 +107,7 @@ public class AdapterObraDeArte extends RecyclerView.Adapter {
             Glide.with(context)
                     .using(new FirebaseImageLoader())
                     .load(reference.child(imagenDescargada))
+                    .placeholder(R.drawable.placeholder)
                     .into(imagenCelda);
         }
     }

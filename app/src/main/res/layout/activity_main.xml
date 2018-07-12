@@ -4,31 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/backg1"
+    android:orientation="vertical"
     tools:context=".view.ActivityMain">
-
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
-        android:layout_margin="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="12dp"
         android:src="@drawable/logo1" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_id"
         android:layout_width="match_parent"
-        android:layout_height="370dp"
-        android:layout_margin="12dp" />
-
+        android:layout_height="400dp" />
 
     <Button
-        android:text="CERRAR SESION"
         android:id="@+id/cerrar_sesion_button_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_margin="12dp"
-        android:layout_gravity="bottom"/>
+        android:text="CERRAR SESION" />
 
 </LinearLayout>

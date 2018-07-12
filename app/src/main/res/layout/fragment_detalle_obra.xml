@@ -4,15 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="5"
+    android:weightSum="4"
     tools:context=".view.FragmentDetalleObra">
 
     <ImageView
         android:id="@+id/imagen_obra_grande"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
-        android:scaleType="center"
+        android:layout_weight="2"
+        android:scaleType="centerCrop"
         android:src="@drawable/placeholder" />
 
     <LinearLayout
@@ -29,7 +29,8 @@
             android:layout_gravity="right"
             android:layout_marginRight="6dp"
             android:layout_marginTop="24dp"
-            android:background="@drawable/shadow_gris"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/shadow_gris_claro"
             android:ellipsize="marquee"
             android:focusable="false"
             android:fontFamily="serif"
@@ -48,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_margin="6dp"
-            android:background="@drawable/shadow_gris"
+            android:background="@drawable/shadow_gris_claro"
             android:ellipsize="marquee"
             android:focusable="false"
             android:fontFamily="serif-monospace"
@@ -67,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_margin="6dp"
-            android:background="@drawable/shadow_gris"
+            android:background="@drawable/shadow_gris_claro"
             android:ellipsize="marquee"
             android:focusable="false"
             android:fontFamily="serif-monospace"
@@ -86,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_margin="6dp"
-            android:background="@drawable/shadow_gris"
+            android:background="@drawable/shadow_gris_claro"
             android:ellipsize="marquee"
             android:focusable="false"
             android:fontFamily="serif-monospace"
