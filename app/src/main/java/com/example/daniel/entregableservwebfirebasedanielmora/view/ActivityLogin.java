@@ -100,6 +100,7 @@ public class ActivityLogin extends AppCompatActivity {
                 if (user != null) {
                     //El usuario ha iniciado sesión
                     Intent intent = new Intent(ActivityLogin.this, ActivityMain.class);
+                  //  intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     Log.d("facebook", "onAuthStateChanged:signed_out");
 
@@ -160,13 +161,11 @@ public class ActivityLogin extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             Toast.makeText(ActivityLogin.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            updateUI(null);
                         }
 
                         // ...
@@ -197,7 +196,6 @@ public class ActivityLogin extends AppCompatActivity {
         //Compruebe si el usuario ha iniciado sesión (no nulo) y actualizar UI en consecuencia.
         mAuth.addAuthStateListener(mAuthListener);
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
     }
 
     @Override
@@ -224,24 +222,15 @@ public class ActivityLogin extends AppCompatActivity {
                             //Inicie sesión con éxito, actualice la IU con la información del usuario que inició sesión.
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
                         } else {
                             //Si el inicio de sesión falla, muestre un mensaje al usuario
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
                             Toast.makeText(ActivityLogin.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            updateUI(null);
                         }
                         // ...
                     }
                 });
-    }
-
-    private void updateUI(FirebaseUser user) {
-        if (user != null) {
-            Intent intent = new Intent(ActivityLogin.this, ActivityMain.class);
-            startActivity(intent);
-        }
     }
 
     private void loginUsuario(String email, String password) {
@@ -252,12 +241,10 @@ public class ActivityLogin extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             //Inicie sesión con éxito, actualice la IU con la información del usuario que inició sesión.
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
                         } else {
                             //Si el inicio de sesión falla, muestre un mensaje al usuario.
                             Toast.makeText(ActivityLogin.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            updateUI(null);
                         }
                         // ...
                     }
