@@ -3,14 +3,19 @@ package com.example.daniel.entregableservwebfirebasedanielmora.view;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.daniel.entregableservwebfirebasedanielmora.R;
 import com.example.daniel.entregableservwebfirebasedanielmora.model.pojo.ObraDeArte;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -26,6 +31,8 @@ public class FragmentDetalleObra extends Fragment {
     private TextView nacionalidad;
     private TextView influenciadoPor;
     private ObraDeArte obraDeArte;
+    private FirebaseStorage storage;
+    private StorageReference reference;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,13 +51,27 @@ public class FragmentDetalleObra extends Fragment {
         nacionalidad.setSelected(true);
         influenciadoPor.setSelected(true);
 
+        storage = FirebaseStorage.getInstance();
+        reference = storage.getReference();
+
         Bundle bundle = getArguments();
         obraDeArte = (ObraDeArte) bundle.getSerializable(OBRA_RECIBIDA);
 
         nombreObra.setText(obraDeArte.getNombreObra());
-        Picasso.get().load(obraDeArte.getImage()).placeholder(R.drawable.placeholder).into(imagenGrande);
-
+        //Picasso.get().load(obraDeArte.getImage()).placeholder(R.drawable.placeholder).into(imagenGrande);
+        cargarImagenesGrandeDescargadas(obraDeArte.getImage());
         return view;
+    }
+
+    private void cargarImagenesGrandeDescargadas(String imagenDescargada) {
+        if (TextUtils.isEmpty(imagenDescargada)) {
+            return;
+        }
+        Glide.with(getContext())
+                .using(new FirebaseImageLoader())
+                .load(reference.child(imagenDescargada))
+                .placeholder(R.drawable.placeholder)
+                .into(imagenGrande);
     }
 
     public static FragmentDetalleObra dameUnFragment(ObraDeArte obraDeArte) {

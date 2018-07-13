@@ -103,7 +103,6 @@ public class ActivityLogin extends AppCompatActivity {
                     startActivity(intent);
                     Log.d("facebook", "onAuthStateChanged:signed_out");
 
-
                 } else {
                     //El usuario está desconectado
                     Log.d("facebook", "onAuthStateChanged:signed_out");
