@@ -138,8 +138,8 @@ public class ActivityLogin extends AppCompatActivity {
         });
     }
 
-    AccessToken accessToken = AccessToken.getCurrentAccessToken();
-    boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+    //AccessToken accessToken = AccessToken.getCurrentAccessToken();
+    //boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
 
     private void cargarFotoDelUsuario() {
         if (Profile.getCurrentProfile() != null) {
@@ -173,7 +173,7 @@ public class ActivityLogin extends AppCompatActivity {
                 });
     }
 
-    private void printHash() {
+   /* private void printHash() {
         try {
             PackageInfo info =
                     getPackageManager().getPackageInfo(getApplicationContext().getPackageName(),
@@ -188,7 +188,7 @@ public class ActivityLogin extends AppCompatActivity {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     @Override
     public void onStart() {

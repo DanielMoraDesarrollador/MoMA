@@ -2,6 +2,7 @@ package com.example.daniel.entregableservwebfirebasedanielmora.view;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -9,11 +10,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.daniel.entregableservwebfirebasedanielmora.R;
+import com.example.daniel.entregableservwebfirebasedanielmora.model.pojo.Artista;
 import com.example.daniel.entregableservwebfirebasedanielmora.model.pojo.ObraDeArte;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -24,6 +32,7 @@ import com.squareup.picasso.Picasso;
 public class FragmentDetalleObra extends Fragment {
 
     private static final String OBRA_RECIBIDA = "obra_recibida";
+    private static final String ARTISTS = "artists";
 
     private ImageView imagenGrande;
     private TextView nombreObra;
@@ -33,6 +42,7 @@ public class FragmentDetalleObra extends Fragment {
     private ObraDeArte obraDeArte;
     private FirebaseStorage storage;
     private StorageReference reference;
+    private FirebaseDatabase database;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,6 +63,7 @@ public class FragmentDetalleObra extends Fragment {
 
         storage = FirebaseStorage.getInstance();
         reference = storage.getReference();
+        database = FirebaseDatabase.getInstance();
 
         Bundle bundle = getArguments();
         obraDeArte = (ObraDeArte) bundle.getSerializable(OBRA_RECIBIDA);
@@ -60,6 +71,7 @@ public class FragmentDetalleObra extends Fragment {
         nombreObra.setText(obraDeArte.getNombreObra());
         //Picasso.get().load(obraDeArte.getImage()).placeholder(R.drawable.placeholder).into(imagenGrande);
         cargarImagenesGrandeDescargadas(obraDeArte.getImage());
+        cargarDetalleObra(obraDeArte);
         return view;
     }
 
@@ -72,6 +84,27 @@ public class FragmentDetalleObra extends Fragment {
                 .load(reference.child(imagenDescargada))
                 .placeholder(R.drawable.placeholder)
                 .into(imagenGrande);
+    }
+
+    private void cargarDetalleObra(ObraDeArte obra) {
+        DatabaseReference dataReference = database.getReference().child(ARTISTS).child(obra.getArtistId());
+        dataReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    Artista artista = dataSnapshot.getValue(Artista.class);
+                    nombreArtista.setText(artista.getNombreArtista());
+                    nacionalidad.setText(artista.getNacionalidad());
+                    influenciadoPor.setText(artista.getInfluenciadoPor());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getActivity(), "Error de carga detalle", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     public static FragmentDetalleObra dameUnFragment(ObraDeArte obraDeArte) {

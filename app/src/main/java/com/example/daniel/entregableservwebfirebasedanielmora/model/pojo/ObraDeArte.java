@@ -16,6 +16,10 @@ public class ObraDeArte implements Serializable {
     public ObraDeArte() {
     }
 
+    public String getArtistId() {
+        return artistId;
+    }
+
     public String getNombreObra() {
         return nombreObra;
     }
