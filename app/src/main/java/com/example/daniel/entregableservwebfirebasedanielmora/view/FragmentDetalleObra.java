@@ -104,7 +104,6 @@ public class FragmentDetalleObra extends Fragment {
                 Toast.makeText(getActivity(), "Error de carga detalle", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     public static FragmentDetalleObra dameUnFragment(ObraDeArte obraDeArte) {
