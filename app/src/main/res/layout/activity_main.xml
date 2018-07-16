@@ -12,16 +12,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginTop="12dp"
+        android:layout_margin="12dp"
+        android:elevation="@dimen/cardview_default_elevation"
         android:src="@drawable/logo1" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:elevation="@dimen/cardview_default_elevation" />
 
     <Button
         android:id="@+id/cerrar_sesion_button_id"
@@ -29,6 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="12dp"
+        android:elevation="@dimen/cardview_default_elevation"
         android:text="CERRAR SESION" />
 
 </LinearLayout>

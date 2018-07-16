@@ -47,7 +47,7 @@ public class FragmentDetalleObra extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_detalle_obra, container, false);
 
         imagenGrande = view.findViewById(R.id.imagen_obra_grande);
@@ -69,7 +69,7 @@ public class FragmentDetalleObra extends Fragment {
         obraDeArte = (ObraDeArte) bundle.getSerializable(OBRA_RECIBIDA);
 
         nombreObra.setText(obraDeArte.getNombreObra());
-        //Picasso.get().load(obraDeArte.getImage()).placeholder(R.drawable.placeholder).into(imagenGrande);
+
         cargarImagenesGrandeDescargadas(obraDeArte.getImage());
         cargarDetalleObra(obraDeArte);
         return view;

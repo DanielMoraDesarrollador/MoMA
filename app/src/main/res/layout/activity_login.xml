@@ -18,37 +18,23 @@
 
     <EditText
         android:id="@+id/edit_text_email"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginRight="12dp"
+        style="@style/botonesLogin"
         android:hint="e-mail" />
 
     <EditText
         android:id="@+id/edit_text_pass"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginRight="12dp"
+        style="@style/botonesLogin"
         android:hint="password"
         android:inputType="textPassword" />
 
     <Button
         android:id="@+id/boton_crear_usuario"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginRight="12dp"
-        android:layout_marginTop="8dp"
+        style="@style/botonesLogin"
         android:text="Crear Cuenta" />
 
     <Button
         android:id="@+id/boton_login_usuario"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginRight="12dp"
-        android:layout_marginTop="8dp"
+        style="@style/botonesLogin"
         android:text="Login" />
 
     <com.facebook.login.widget.LoginButton
@@ -56,6 +42,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
-        android:layout_margin="50dp" />
+        android:layout_margin="20dp" />
 
 </LinearLayout>

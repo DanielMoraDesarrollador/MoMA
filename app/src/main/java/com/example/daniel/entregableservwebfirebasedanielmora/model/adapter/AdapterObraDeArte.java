@@ -38,7 +38,6 @@ public class AdapterObraDeArte extends RecyclerView.Adapter {
         this.obras = obras;
     }
 
-
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

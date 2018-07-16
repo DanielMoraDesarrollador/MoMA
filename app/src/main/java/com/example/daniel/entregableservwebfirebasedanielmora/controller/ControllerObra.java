@@ -18,8 +18,9 @@ import java.util.List;
 
 public class ControllerObra {
 
-    private static final String PINTURAS = "paints";
     private Context context;
+    //estos atributos solo se utilizan para el pedido con firebase
+    private static final String PINTURAS = "paints";
     private FirebaseDatabase database;
     private DatabaseReference reference;
 
@@ -27,25 +28,26 @@ public class ControllerObra {
         this.context = context;
     }
 
-
     private boolean hayInternet() {
         return true;
     }
 
     public void obtenerObrasOnLine(final ResultListener<List<ObraDeArte>> resultListenerDeLaVista) {
         if (hayInternet()) {
-      /*      DaoObraDeArte daoObraDeArte = new DaoObraDeArte();
+
+            //opcion 1 hace el pedido a la api con retrofit: el json contiene datos incorrectos
+
+            DaoObraDeArte daoObraDeArte = new DaoObraDeArte();
             daoObraDeArte.obtenerObrasDeArte(new ResultListener<List<ObraDeArte>>() {
                 @Override
                 public void finish(List<ObraDeArte> resultado) {
                     resultListenerDeLaVista.finish(resultado);
                 }
             });
-        }
-    }
 
-    public void obtenerObrasOnLine() {*/
-            database = FirebaseDatabase.getInstance();
+            //opcion 2 para descargar el contenido correcto desde firebase
+
+        /*    database = FirebaseDatabase.getInstance();
             reference = database.getReference().child(PINTURAS);
             reference.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -66,7 +68,7 @@ public class ControllerObra {
                 public void onCancelled(@NonNull DatabaseError databaseError) {
                     Toast.makeText(context, "Fallo", Toast.LENGTH_SHORT).show();
                 }
-            });
+            });*/
         }
     }
 }
