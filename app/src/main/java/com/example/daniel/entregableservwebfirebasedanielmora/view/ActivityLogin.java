@@ -36,7 +36,8 @@ import com.squareup.picasso.Picasso;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class ActivityLogin extends AppCompatActivity {
+public class ActivityLogin
+        extends AppCompatActivity {
 
     private CallbackManager callbackManager;
     private LoginButton loginButtonFacebook;
@@ -138,9 +139,6 @@ public class ActivityLogin extends AppCompatActivity {
         });
     }
 
-    //AccessToken accessToken = AccessToken.getCurrentAccessToken();
-    //boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
-
     private void cargarFotoDelUsuario() {
         if (Profile.getCurrentProfile() != null) {
             Uri photoUri = Profile.getCurrentProfile().getProfilePictureUri(200, 200);
@@ -195,7 +193,6 @@ public class ActivityLogin extends AppCompatActivity {
         super.onStart();
         //Compruebe si el usuario ha iniciado sesión (no nulo) y actualizar UI en consecuencia.
         mAuth.addAuthStateListener(mAuthListener);
-        FirebaseUser currentUser = mAuth.getCurrentUser();
     }
 
     @Override
