@@ -14,7 +14,7 @@
         android:layout_gravity="top"
         android:layout_margin="12dp"
         android:elevation="@dimen/cardview_default_elevation"
-        android:src="@drawable/logo1" />
+        android:src="@drawable/logo2" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_id"

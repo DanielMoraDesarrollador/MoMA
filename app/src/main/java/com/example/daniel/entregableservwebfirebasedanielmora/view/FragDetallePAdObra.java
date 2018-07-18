@@ -6,11 +6,12 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import java.util.List;
 
-public class FragmentDetallePagerAdapterObra extends FragmentStatePagerAdapter {
+public class FragDetallePAdObra
+        extends FragmentStatePagerAdapter {
 
     private List<FragmentDetalleObra> listaObrasDeArte;
 
-    public FragmentDetallePagerAdapterObra(FragmentManager fm, List<FragmentDetalleObra> obras) {
+    public FragDetallePAdObra(FragmentManager fm, List<FragmentDetalleObra> obras) {
         super(fm);
         this.listaObrasDeArte = obras;
     }

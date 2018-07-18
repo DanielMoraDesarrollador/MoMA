@@ -70,10 +70,14 @@ public class ActivityLogin
             @Override
             public void onClick(View v) {
                 if (editTextMail.getText().toString().isEmpty()) {
-                    Toast.makeText(ActivityLogin.this, "Completar el campo E-MAIL", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivityLogin.this,
+                            "Completar el campo E-MAIL",
+                            Toast.LENGTH_SHORT).show();
                 }
                 if (editTextPass.getText().toString().isEmpty()) {
-                    Toast.makeText(ActivityLogin.this, "Completar el campo PASSWORD", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivityLogin.this,
+                            "Completar el campo PASSWORD",
+                            Toast.LENGTH_SHORT).show();
                 } else {
                     loginUsuario(editTextMail.getText().toString(), editTextPass.getText().toString());
                 }
@@ -84,10 +88,14 @@ public class ActivityLogin
             @Override
             public void onClick(View v) {
                 if (editTextMail.getText().toString().isEmpty()) {
-                    Toast.makeText(ActivityLogin.this, "Completar el campo E-MAIL", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivityLogin.this,
+                            "Completar el campo E-MAIL",
+                            Toast.LENGTH_SHORT).show();
                 }
                 if (editTextPass.getText().toString().isEmpty()) {
-                    Toast.makeText(ActivityLogin.this, "Completar el campo PASSWORD", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivityLogin.this,
+                            "Completar el campo PASSWORD",
+                            Toast.LENGTH_SHORT).show();
                 } else {
                     crearUsuario(editTextMail.getText().toString(), editTextPass.getText().toString());
                 }
@@ -101,7 +109,7 @@ public class ActivityLogin
                 if (user != null) {
                     //El usuario ha iniciado sesión
                     Intent intent = new Intent(ActivityLogin.this, ActivityMain.class);
-                  //  intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     Log.d("facebook", "onAuthStateChanged:signed_out");
 

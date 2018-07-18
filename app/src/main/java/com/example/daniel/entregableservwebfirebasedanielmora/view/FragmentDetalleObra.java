@@ -29,7 +29,8 @@ import com.squareup.picasso.Picasso;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentDetalleObra extends Fragment {
+public class FragmentDetalleObra
+        extends Fragment {
 
     private static final String OBRA_RECIBIDA = "obra_recibida";
     private static final String ARTISTS = "artists";
@@ -72,6 +73,7 @@ public class FragmentDetalleObra extends Fragment {
 
         cargarImagenesGrandeDescargadas(obraDeArte.getImage());
         cargarDetalleObra(obraDeArte);
+
         return view;
     }
 
@@ -87,7 +89,10 @@ public class FragmentDetalleObra extends Fragment {
     }
 
     private void cargarDetalleObra(ObraDeArte obra) {
-        DatabaseReference dataReference = database.getReference().child(ARTISTS).child(obra.getArtistId());
+        DatabaseReference dataReference = database.getReference()
+                .child(ARTISTS)
+                .child(obra.getArtistId());
+
         dataReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

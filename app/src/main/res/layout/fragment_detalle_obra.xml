@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blanco"
+    android:background="@drawable/imagenfondo"
     android:orientation="vertical"
     android:weightSum="2"
     tools:context=".view.FragmentDetalleObra">
@@ -12,9 +12,15 @@
         android:id="@+id/imagen_obra_grande"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="6dp"
         android:layout_weight="1"
         android:scaleType="fitCenter"
         android:src="@drawable/placeholder" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gris_osc" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,9 +36,9 @@
         <TextView
             android:id="@+id/nombre_obra"
             style="@style/contenidoDetalle"
-            android:text="nombre_obra"
             android:textSize="24sp"
-            android:textStyle="bold|italic" />
+            android:textStyle="bold|italic"
+            tools:text="nombre_obra" />
 
         <TextView
             style="@style/tituloDetalle"
@@ -41,7 +47,7 @@
         <TextView
             android:id="@+id/nombre_artista"
             style="@style/contenidoDetalle"
-            android:text="nombre_artista" />
+            tools:text="nombre_artista" />
 
         <TextView
             style="@style/tituloDetalle"
@@ -50,7 +56,7 @@
         <TextView
             android:id="@+id/nacionalidad"
             style="@style/contenidoDetalle"
-            android:text="nacionalidad" />
+            tools:text="nacionalidad" />
 
         <TextView
             style="@style/tituloDetalle"
@@ -59,7 +65,7 @@
         <TextView
             android:id="@+id/influenciado_por"
             style="@style/contenidoDetalle"
-            android:text="influenciado_por" />
+            tools:text="influenciado_por" />
 
     </LinearLayout>
 

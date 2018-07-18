@@ -22,7 +22,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdapterObraDeArte extends RecyclerView.Adapter {
+public class AdapterObraDeArte
+        extends RecyclerView.Adapter {
 
     private List<ObraDeArte> obras;
     private Context context;
