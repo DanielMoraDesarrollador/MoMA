@@ -36,7 +36,8 @@ import com.squareup.picasso.Picasso;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class ActivityLogin extends AppCompatActivity {
+public class ActivityLogin
+        extends AppCompatActivity {
 
     private CallbackManager callbackManager;
     private LoginButton loginButtonFacebook;
@@ -69,10 +70,14 @@ public class ActivityLogin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (editTextMail.getText().toString().isEmpty()) {
-                    Toast.makeText(ActivityLogin.this, "Completar el campo E-MAIL", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivityLogin.this,
+                            "Completar el campo E-MAIL",
+                            Toast.LENGTH_SHORT).show();
                 }
                 if (editTextPass.getText().toString().isEmpty()) {
-                    Toast.makeText(ActivityLogin.this, "Completar el campo PASSWORD", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivityLogin.this,
+                            "Completar el campo PASSWORD",
+                            Toast.LENGTH_SHORT).show();
                 } else {
                     loginUsuario(editTextMail.getText().toString(), editTextPass.getText().toString());
                 }
@@ -83,10 +88,14 @@ public class ActivityLogin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (editTextMail.getText().toString().isEmpty()) {
-                    Toast.makeText(ActivityLogin.this, "Completar el campo E-MAIL", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivityLogin.this,
+                            "Completar el campo E-MAIL",
+                            Toast.LENGTH_SHORT).show();
                 }
                 if (editTextPass.getText().toString().isEmpty()) {
-                    Toast.makeText(ActivityLogin.this, "Completar el campo PASSWORD", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivityLogin.this,
+                            "Completar el campo PASSWORD",
+                            Toast.LENGTH_SHORT).show();
                 } else {
                     crearUsuario(editTextMail.getText().toString(), editTextPass.getText().toString());
                 }
@@ -100,7 +109,7 @@ public class ActivityLogin extends AppCompatActivity {
                 if (user != null) {
                     //El usuario ha iniciado sesión
                     Intent intent = new Intent(ActivityLogin.this, ActivityMain.class);
-                  //  intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     Log.d("facebook", "onAuthStateChanged:signed_out");
 
@@ -137,9 +146,6 @@ public class ActivityLogin extends AppCompatActivity {
             }
         });
     }
-
-    //AccessToken accessToken = AccessToken.getCurrentAccessToken();
-    //boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
 
     private void cargarFotoDelUsuario() {
         if (Profile.getCurrentProfile() != null) {
@@ -195,7 +201,6 @@ public class ActivityLogin extends AppCompatActivity {
         super.onStart();
         //Compruebe si el usuario ha iniciado sesión (no nulo) y actualizar UI en consecuencia.
         mAuth.addAuthStateListener(mAuthListener);
-        FirebaseUser currentUser = mAuth.getCurrentUser();
     }
 
     @Override

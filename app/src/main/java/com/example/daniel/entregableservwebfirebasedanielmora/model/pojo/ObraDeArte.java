@@ -1,11 +1,13 @@
 package com.example.daniel.entregableservwebfirebasedanielmora.model.pojo;
 
+import com.google.firebase.database.PropertyName;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
 public class ObraDeArte implements Serializable {
 
+    @PropertyName("name")
     @SerializedName("name")
     private String nombreObra;
 
@@ -16,14 +18,17 @@ public class ObraDeArte implements Serializable {
     public ObraDeArte() {
     }
 
+    @PropertyName("artistId")
     public String getArtistId() {
         return artistId;
     }
 
+    @PropertyName("name")
     public String getNombreObra() {
         return nombreObra;
     }
 
+    @PropertyName("image")
     public String getImage() {
         return image;
     }

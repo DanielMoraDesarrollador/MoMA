@@ -15,10 +15,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DaoObraDeArte {
+
     private Retrofit retrofit;
     private ServiceDao serviceRetrofit;
     private static final String BASE_URL = "https://api.myjson.com/";
- //   private static final String BASE_URL = "https://entregableservwebfirebasedanie.firebaseio.com/";
 
     public DaoObraDeArte() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();

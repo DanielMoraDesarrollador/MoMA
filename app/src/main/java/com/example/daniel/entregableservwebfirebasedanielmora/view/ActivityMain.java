@@ -22,7 +22,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.io.Serializable;
 import java.util.List;
 
-public class ActivityMain extends AppCompatActivity implements AdapterObraDeArte.NotificadorCelda {
+public class ActivityMain
+        extends AppCompatActivity
+        implements AdapterObraDeArte.NotificadorCelda {
 
     private AdapterObraDeArte adapterObraDeArte;
     private LinearLayoutManager linearLayoutManagerObra;
@@ -46,14 +48,21 @@ public class ActivityMain extends AppCompatActivity implements AdapterObraDeArte
                     }
                     //esto es para desloguearlo de firebase, ya sea que entro con facebook o nativo
                     FirebaseAuth.getInstance().signOut();
-                    Toast.makeText(ActivityMain.this, "¡Cerró Sesión Correctamente!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivityMain.this,
+                            "¡Cerró Sesión Correctamente!",
+                            Toast.LENGTH_SHORT).show();
+
                     onBackPressed();
                 }
             }
         });
 
         adapterObraDeArte = new AdapterObraDeArte(getApplicationContext(), this);
-        linearLayoutManagerObra = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+        linearLayoutManagerObra = new LinearLayoutManager(
+                getApplicationContext(),
+                LinearLayoutManager.VERTICAL,
+                false);
+
         recyclerViewObra = findViewById(R.id.recycler_id);
 
         setAdapterLinear(recyclerViewObra, linearLayoutManagerObra, adapterObraDeArte);
@@ -70,7 +79,9 @@ public class ActivityMain extends AppCompatActivity implements AdapterObraDeArte
         });
     }
 
-    public void setAdapterLinear(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager, RecyclerView.Adapter adapter) {
+    public void setAdapterLinear(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager,
+                                 RecyclerView.Adapter adapter) {
+
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);

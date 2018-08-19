@@ -29,7 +29,8 @@ import com.squareup.picasso.Picasso;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentDetalleObra extends Fragment {
+public class FragmentDetalleObra
+        extends Fragment {
 
     private static final String OBRA_RECIBIDA = "obra_recibida";
     private static final String ARTISTS = "artists";
@@ -47,7 +48,7 @@ public class FragmentDetalleObra extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_detalle_obra, container, false);
 
         imagenGrande = view.findViewById(R.id.imagen_obra_grande);
@@ -69,9 +70,10 @@ public class FragmentDetalleObra extends Fragment {
         obraDeArte = (ObraDeArte) bundle.getSerializable(OBRA_RECIBIDA);
 
         nombreObra.setText(obraDeArte.getNombreObra());
-        //Picasso.get().load(obraDeArte.getImage()).placeholder(R.drawable.placeholder).into(imagenGrande);
+
         cargarImagenesGrandeDescargadas(obraDeArte.getImage());
         cargarDetalleObra(obraDeArte);
+
         return view;
     }
 
@@ -82,12 +84,14 @@ public class FragmentDetalleObra extends Fragment {
         Glide.with(getContext())
                 .using(new FirebaseImageLoader())
                 .load(reference.child(imagenDescargada))
-                .placeholder(R.drawable.placeholder)
                 .into(imagenGrande);
     }
 
     private void cargarDetalleObra(ObraDeArte obra) {
-        DatabaseReference dataReference = database.getReference().child(ARTISTS).child(obra.getArtistId());
+        DatabaseReference dataReference = database.getReference()
+                .child(ARTISTS)
+                .child(obra.getArtistId());
+
         dataReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -104,7 +108,6 @@ public class FragmentDetalleObra extends Fragment {
                 Toast.makeText(getActivity(), "Error de carga detalle", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     public static FragmentDetalleObra dameUnFragment(ObraDeArte obraDeArte) {

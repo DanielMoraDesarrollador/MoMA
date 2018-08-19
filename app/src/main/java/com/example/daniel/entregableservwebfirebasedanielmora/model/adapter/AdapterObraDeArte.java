@@ -22,7 +22,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdapterObraDeArte extends RecyclerView.Adapter {
+public class AdapterObraDeArte
+        extends RecyclerView.Adapter {
 
     private List<ObraDeArte> obras;
     private Context context;
@@ -37,7 +38,6 @@ public class AdapterObraDeArte extends RecyclerView.Adapter {
     public void setObras(List<ObraDeArte> obras) {
         this.obras = obras;
     }
-
 
     @NonNull
     @Override
@@ -107,7 +107,6 @@ public class AdapterObraDeArte extends RecyclerView.Adapter {
             Glide.with(context)
                     .using(new FirebaseImageLoader())
                     .load(reference.child(imagenDescargada))
-                    .placeholder(R.drawable.placeholder)
                     .into(imagenCelda);
         }
     }

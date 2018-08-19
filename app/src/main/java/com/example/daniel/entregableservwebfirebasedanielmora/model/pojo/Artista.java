@@ -14,7 +14,6 @@ public class Artista implements Serializable {
     @PropertyName("name")
     private String nombreArtista;
 
-
     @SerializedName("nationality")
     @PropertyName("nationality")
     private String nacionalidad;

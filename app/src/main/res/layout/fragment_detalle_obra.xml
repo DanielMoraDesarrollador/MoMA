@@ -1,106 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccent"
     android:orientation="vertical"
-    android:weightSum="5"
-    android:background="@color/blanco"
     tools:context=".view.FragmentDetalleObra">
 
     <ImageView
         android:id="@+id/imagen_obra_grande"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_margin="6dp"
+        android:layout_weight="1"
         android:scaleType="fitCenter"
-        android:src="@drawable/placeholder" />
+        android:src="@drawable/placeholder_arte" />
 
-    <LinearLayout
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
-        android:background="@drawable/back2"
-        android:orientation="vertical">
+        android:layout_margin="12dp"
+        android:layout_weight="1"
+        app:cardElevation="12dp">
 
-        <TextView
-            android:id="@+id/nombre_obra"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginRight="6dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="6dp"
-            android:background="@drawable/shadow_gris_claro"
-            android:ellipsize="marquee"
-            android:focusable="false"
-            android:fontFamily="serif"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:padding="3dp"
-            android:scrollHorizontally="true"
-            android:singleLine="true"
-            android:text="nombre_obra"
-            android:textColor="@color/colorAccent"
-            android:textSize="24sp"
-            android:textStyle="bold|italic" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/gris_osc"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/nombre_artista"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_margin="6dp"
-            android:background="@drawable/shadow_gris_claro"
-            android:ellipsize="marquee"
-            android:focusable="false"
-            android:fontFamily="serif-monospace"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:padding="3dp"
-            android:scrollHorizontally="true"
-            android:singleLine="true"
-            android:text="nombre_artista"
-            android:textColor="@color/colorAccent"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            <TextView
+                style="@style/tituloDetalle"
+                android:text="Nombre: " />
 
-        <TextView
-            android:id="@+id/nacionalidad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_margin="6dp"
-            android:background="@drawable/shadow_gris_claro"
-            android:ellipsize="marquee"
-            android:focusable="false"
-            android:fontFamily="serif-monospace"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:padding="3dp"
-            android:scrollHorizontally="true"
-            android:singleLine="true"
-            android:text="nacionalidad"
-            android:textColor="@color/colorAccent"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/nombre_obra"
+                style="@style/contenidoDetalle"
+                android:textSize="20sp"
+                android:textStyle="bold|italic"
+                tools:text="nombre_obra" />
 
-        <TextView
-            android:id="@+id/influenciado_por"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_margin="6dp"
-            android:background="@drawable/shadow_gris_claro"
-            android:ellipsize="marquee"
-            android:focusable="false"
-            android:fontFamily="serif-monospace"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:padding="3dp"
-            android:scrollHorizontally="true"
-            android:singleLine="true"
-            android:text="influenciado_por"
-            android:textColor="@color/colorAccent"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            <TextView
+                style="@style/tituloDetalle"
+                android:text="Artista: " />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/nombre_artista"
+                style="@style/contenidoDetalle"
+                tools:text="nombre_artista" />
 
+            <TextView
+                style="@style/tituloDetalle"
+                android:text="Nacionalidad: " />
+
+            <TextView
+                android:id="@+id/nacionalidad"
+                style="@style/contenidoDetalle"
+                tools:text="nacionalidad" />
+
+            <TextView
+                style="@style/tituloDetalle"
+                android:text="Influenciado por: " />
+
+            <TextView
+                android:id="@+id/influenciado_por"
+                style="@style/contenidoDetalle"
+                tools:text="influenciado_por" />
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
 </LinearLayout>
