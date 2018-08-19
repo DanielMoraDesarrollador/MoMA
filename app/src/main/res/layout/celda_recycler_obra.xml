@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="200dp">
@@ -9,7 +10,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
-        android:layout_marginBottom="12dp">
+        android:layout_marginTop="12dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -28,13 +31,16 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/imagen_celda_recycler_obra"
                 android:layout_margin="3dp"
-                android:background="@drawable/shadow_gris"
+                android:background="@drawable/shadow_negro"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
                 android:letterSpacing="0.125"
-                android:lines="2"
+                android:maxLines="1"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
-                android:textStyle="bold|italic" />
+                android:textStyle="bold|italic"
+                tools:text="Texto" />
 
 
         </RelativeLayout>

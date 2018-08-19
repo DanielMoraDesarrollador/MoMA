@@ -107,7 +107,6 @@ public class AdapterObraDeArte
             Glide.with(context)
                     .using(new FirebaseImageLoader())
                     .load(reference.child(imagenDescargada))
-                    .placeholder(R.drawable.placeholder)
                     .into(imagenCelda);
         }
     }

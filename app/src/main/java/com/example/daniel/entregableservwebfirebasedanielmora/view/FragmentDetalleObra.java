@@ -84,7 +84,6 @@ public class FragmentDetalleObra
         Glide.with(getContext())
                 .using(new FirebaseImageLoader())
                 .load(reference.child(imagenDescargada))
-                .placeholder(R.drawable.placeholder)
                 .into(imagenGrande);
     }
 

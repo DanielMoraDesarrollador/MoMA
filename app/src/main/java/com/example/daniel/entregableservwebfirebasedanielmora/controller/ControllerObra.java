@@ -37,17 +37,17 @@ public class ControllerObra {
 
             //opcion 1 hace el pedido a la api con retrofit: el json contiene datos incorrectos
 
-            DaoObraDeArte daoObraDeArte = new DaoObraDeArte();
-            daoObraDeArte.obtenerObrasDeArte(new ResultListener<List<ObraDeArte>>() {
-                @Override
-                public void finish(List<ObraDeArte> resultado) {
-                    resultListenerDeLaVista.finish(resultado);
-                }
-            });
+//            DaoObraDeArte daoObraDeArte = new DaoObraDeArte();
+//            daoObraDeArte.obtenerObrasDeArte(new ResultListener<List<ObraDeArte>>() {
+//                @Override
+//                public void finish(List<ObraDeArte> resultado) {
+//                    resultListenerDeLaVista.finish(resultado);
+//                }
+//            });
 
             //opcion 2 para descargar el contenido correcto desde firebase
 
-        /*    database = FirebaseDatabase.getInstance();
+            database = FirebaseDatabase.getInstance();
             reference = database.getReference().child(PINTURAS);
             reference.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -68,7 +68,7 @@ public class ControllerObra {
                 public void onCancelled(@NonNull DatabaseError databaseError) {
                     Toast.makeText(context, "Fallo", Toast.LENGTH_SHORT).show();
                 }
-            });*/
+            });
         }
     }
 }

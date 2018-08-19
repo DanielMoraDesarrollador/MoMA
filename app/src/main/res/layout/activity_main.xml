@@ -1,35 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backg1"
-    android:orientation="vertical"
     tools:context=".view.ActivityMain">
 
-    <ImageView
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:layout_margin="12dp"
-        android:elevation="@dimen/cardview_default_elevation"
-        android:src="@drawable/logo2" />
+        app:elevation="10dp">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:contentScrim="@color/blanco"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/imagenfondo"
+                android:scaleType="centerCrop"
+                android:src="@drawable/logo2"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.5" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:elevation="@dimen/cardview_default_elevation" />
+        android:layout_marginBottom="65dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
 
     <Button
         android:id="@+id/cerrar_sesion_button_id"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="12dp"
-        android:elevation="@dimen/cardview_default_elevation"
-        android:text="CERRAR SESION" />
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_margin="3dp"
+        android:background="@color/colorPrimaryDark"
+        android:padding="6dp"
+        android:text="CERRAR SESION"
+        android:textColor="@color/blanco" />
 
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
