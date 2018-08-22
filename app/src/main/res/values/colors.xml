@@ -5,7 +5,8 @@
     <color name="colorAccent">#212121</color>
     <color name="gris_osc">#303030</color>
     <color name="gris">#c89e9e9e</color>
-    <color name="blanco">#eeeeee</color>
-  <color name="oro">#ffbf00</color>
+    <color name="blanco1">#cfd8dc</color>
+    <color name="blanco">#ffffff</color>
+    <color name="oro">#ff9800</color>
 
 </resources>

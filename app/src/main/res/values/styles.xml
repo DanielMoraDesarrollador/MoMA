@@ -12,11 +12,12 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">left</item>
-        <item name="android:layout_marginLeft">6dp</item>
-        <item name="android:layout_marginTop">3dp</item>
-        <item name="android:padding">3dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:padding">2dp</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/oro</item>
     </style>
 
@@ -24,24 +25,23 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center_horizontal</item>
-        <item name="android:layout_margin">3dp</item>
-        <item name="android:background">@drawable/shadow_negro</item>
+        <item name="android:layout_margin">2dp</item>
         <item name="android:ellipsize">marquee</item>
         <item name="android:focusable">false</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:marqueeRepeatLimit">marquee_forever</item>
-        <item name="android:padding">3dp</item>
+        <item name="android:padding">2dp</item>
         <item name="android:scrollHorizontally">true</item>
         <item name="android:singleLine">true</item>
-        <item name="android:textColor">@color/blanco</item>
+        <item name="android:textColor">@color/oro</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold|italic</item>
     </style>
 
     <style name="botonesLogin">
-        <item name="android:layout_width">200dp</item>
+        <item name="android:layout_width">212dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_gravity">right</item>
+        <item name="android:backgroundTint">@color/blanco1</item>
         <item name="android:layout_marginRight">12dp</item>
         <item name="android:layout_marginTop">8dp</item>
 

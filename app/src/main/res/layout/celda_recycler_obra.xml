@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="200dp">
+    android:layout_height="150dp">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
                 android:id="@+id/imagen_celda_recycler_obra"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
+                android:scaleType="centerInside"
                 tools:background="@mipmap/ic_launcher" />
 
             <TextView

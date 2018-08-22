@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/logo_moma1"
     android:orientation="vertical"
-    android:background="@drawable/logo_moma"
+    android:focusableInTouchMode="true"
     tools:context=".view.ActivityLogin">
 
 
@@ -14,37 +15,74 @@
         android:layout_width="180dp"
         android:layout_height="180dp"
         android:layout_gravity="right"
-        android:layout_margin="40dp" />
+        android:layout_margin="24dp" />
 
-    <EditText
-        android:id="@+id/edit_text_email"
-        style="@style/botonesLogin"
-        android:hint="e-mail"
-        android:textColorHint="@color/colorPrimaryDark" />
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:textColorHint="@color/blanco1">
 
-    <EditText
-        android:id="@+id/edit_text_pass"
-        style="@style/botonesLogin"
-        android:hint="password"
-        android:inputType="textPassword"
-        android:textColorHint="@color/colorPrimaryDark" />
+        <EditText
+            android:id="@+id/edit_text_email"
+            style="@style/botonesLogin"
+            android:hint="e-mail" />
+    </android.support.design.widget.TextInputLayout>
 
-    <Button
-        android:id="@+id/boton_crear_usuario"
-        style="@style/botonesLogin"
-        android:text="Crear Cuenta" />
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:textColorHint="@color/blanco1">
 
-    <Button
-        android:id="@+id/boton_login_usuario"
-        style="@style/botonesLogin"
-        android:text="Login" />
+        <EditText
+            android:id="@+id/edit_text_pass"
+            style="@style/botonesLogin"
+            android:hint="password"
+            android:inputType="textPassword" />
+    </android.support.design.widget.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/boton_crear_usuario"
+            android:layout_width="100dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="12dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:gravity="center"
+            android:padding="6dp"
+            android:text="Crear Cuenta"
+            android:textColor="@color/blanco1"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/boton_login_usuario"
+            android:layout_width="100dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="12dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:gravity="center"
+            android:padding="6dp"
+            android:text="Login"
+            android:textColor="@color/blanco1"
+            android:textSize="14sp" />
+    </LinearLayout>
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
-        android:layout_margin="20dp"
-        android:padding="10dp" />
+        android:layout_margin="24dp"
+        android:padding="12dp" />
 
 </LinearLayout>
